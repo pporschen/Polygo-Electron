@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
+
 import './App.css';
+import Mapper from './components/Map';
+import Sidebar from './components/Sidebar'
 
 function App() {
+
+  useEffect(()=>{
+    fetch('https://nominatim.openstreetmap.org/search?format=json&q=Bauer Landstraße 17, Flensburg')
+      .then(res => res.json())
+      .then(res => console.log(res))
+
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Sidebar className='sidebar' />
+      <Mapper id='map' />
+    </>)
 }
 
 export default App;
